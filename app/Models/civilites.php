@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class civilites extends Model
+class Civilites extends Model
 {
     use HasFactory;
+
+    public function personnes()
+    {
+        return $this->hasMany(Personnes::class);
+    }
 }

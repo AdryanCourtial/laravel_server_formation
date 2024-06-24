@@ -19,11 +19,6 @@ return new class extends Migration
             $table->integer('code_postal');
             $table->string('ville');
             $table->integer('chiffres_affaires');
-            // $table->foreign('personne_id')
-            //                                 ->nullable()
-            //                                 ->onDelete()
-            //                                 ->onUpdate()
-            //                                 ->constrained();
         });
     }
 
