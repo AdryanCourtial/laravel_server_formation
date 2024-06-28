@@ -15,7 +15,8 @@ class EntreprisesController extends Controller
      */
     public function index()
     {
-        return Entreprises::all();
+        $entreprises = Entreprises::with('secteur_activite', 'personnes')->get();
+        return response()->json($entreprises);
     }
 
     /**

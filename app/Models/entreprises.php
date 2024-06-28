@@ -18,6 +18,6 @@ class Entreprises extends Model
 
     public function personnes()
     {
-        return $this->hasMany(Personnes::class);
+        return $this->hasMany(Personnes::class, 'entreprise_id');
     }
 }

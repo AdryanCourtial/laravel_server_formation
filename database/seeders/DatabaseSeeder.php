@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Localisations;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CivilitesSeeder::class,
-            LocationsSeeder::class,
+            LocalisationsSeeder::class,
             SecteursActivitesSeeder::class,
         ]);
     }

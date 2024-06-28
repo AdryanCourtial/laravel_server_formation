@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Personnes;
+use App\Models\Civilites;
 use Illuminate\Http\Request;
 
-class PersonneController extends Controller
+class CivilitesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
-        $personnes = Personnes::with('civilite', 'localisation', 'entreprise')->get();
-        return response()->json($personnes);
+        return Civilites::all();
     }
 
     /**
@@ -23,9 +21,7 @@ class PersonneController extends Controller
      */
     public function store(Request $request)
     {
-        Personnes::create([
-            'nom' => $request->nom
-        ]);
+        //
     }
 
     /**

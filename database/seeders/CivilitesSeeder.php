@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\civilites;
+use App\Models\Civilites;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
