@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Civilites;
 use App\Models\Personnes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PersonneController extends Controller
 {
@@ -24,7 +26,16 @@ class PersonneController extends Controller
     public function store(Request $request)
     {
         Personnes::create([
-            'nom' => $request->nom
+            'nom' => $request->nom,
+            'prenom' => $request-> prenom,
+            'email' => $request->email,
+            'telephone' => $request->telephone,
+            'civilite_id' => DB::table('civilites')
+                    ->where('civilite', '=', $request->civilite )
+                    ->value('id'),
+            'localisation_id' => DB::table('localisations')
+                    ->where('localisation', '=', $request->localisation )
+                    ->value('id')
         ]);
     }
 
@@ -49,6 +60,7 @@ class PersonneController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $id = (int)$id;
+        $delete = Personnes::destroy($id);
     }
 }

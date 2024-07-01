@@ -3,21 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Entreprises;
+use App\Models\Secteurs_activites;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-use function Laravel\Prompts\error;
-
-class EntreprisesController extends Controller
+class Secteurs_ActivitesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $entreprises = Entreprises::with('secteur_activite', 'personnes')->get();
-        return response()->json($entreprises);
+        return Secteurs_activites::all();
     }
 
     /**
@@ -25,13 +21,7 @@ class EntreprisesController extends Controller
      */
     public function store(Request $request)
     {
-        Entreprises::create([
-            'nom' => $request->nom,
-            'secteur_activite_id' => DB::table('secteurs_activites')->where('secteur_activite', '=', $request->secteur_activite)->value('id'),
-            'code_postal' => $request->code_postal,
-            'ville' => $request->ville,
-            'chiffres_affaires' => $request->chiffres_affaires,
-        ]);
+        //
     }
 
     /**
@@ -55,6 +45,6 @@ class EntreprisesController extends Controller
      */
     public function destroy(string $id)
     {
-        Entreprises::destroy($id);
+        //
     }
 }
