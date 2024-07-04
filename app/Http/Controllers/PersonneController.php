@@ -7,6 +7,7 @@ use App\Models\Civilites;
 use App\Models\Personnes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class PersonneController extends Controller
 {
@@ -30,12 +31,8 @@ class PersonneController extends Controller
             'prenom' => $request-> prenom,
             'email' => $request->email,
             'telephone' => $request->telephone,
-            'civilite_id' => DB::table('civilites')
-                    ->where('civilite', '=', $request->civilite )
-                    ->value('id'),
-            'localisation_id' => DB::table('localisations')
-                    ->where('localisation', '=', $request->localisation )
-                    ->value('id')
+            'civilite_id' => $request->civilite_id,
+            'localisation_id' => $request->localisation_id
         ]);
     }
 
@@ -52,7 +49,15 @@ class PersonneController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $personnes = Personnes::find($id);
+
+        $personnes->nom = $request->nom;
+        $personnes->prenom = $request->prenom;
+        $personnes->telephone = $request->telephone;
+        $personnes->email = $request->email;
+        $personnes->civilite_id = $request->civilite_id;
+        $personnes->localisation_id = $request->localisation_id;
+        $personnes->save();
     }
 
     /**

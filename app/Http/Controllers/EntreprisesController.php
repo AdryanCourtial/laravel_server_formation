@@ -27,7 +27,7 @@ class EntreprisesController extends Controller
     {
         Entreprises::create([
             'nom' => $request->nom,
-            'secteur_activite_id' => DB::table('secteurs_activites')->where('secteur_activite', '=', $request->secteur_activite)->value('id'),
+            'secteur_activite_id' => $request->secteur_activite_id,
             'code_postal' => $request->code_postal,
             'ville' => $request->ville,
             'chiffres_affaires' => $request->chiffres_affaires,
@@ -47,7 +47,14 @@ class EntreprisesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $entreprises = Entreprises::find($id);
+
+        $entreprises->nom = $request->nom;
+        $entreprises->secteur_activite_id = $request->secteur_activite_id;        ;
+        $entreprises->code_postal = $request->code_postal;
+        $entreprises->ville = $request->ville;
+        $entreprises->chiffres_affaires = $request->chiffres_affaires;
+        $entreprises->save();
     }
 
     /**
