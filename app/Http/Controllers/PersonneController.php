@@ -14,8 +14,13 @@ class PersonneController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filter = $request->header('filter');
+
+        if ($filter == 'civilte'){
+
+        }
 
         $personnes = Personnes::with('civilite', 'localisation', 'entreprise')->get();
         return response()->json($personnes);
